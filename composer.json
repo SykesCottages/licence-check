@@ -1,6 +1,6 @@
 {
     "name": "sykescottages/licence-check",
-    "type": "project",
+    "type": "library",
     "description": "Checks all of the dependencies of projects to ensure the license is valid for use",
     "license": "MIT",
     "require": {
