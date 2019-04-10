@@ -17,7 +17,7 @@ foreach($autoloadPaths as $autoload) {
 }
 
 $config = new Config();
-$config->parseArguments(implode(' ', $argv));
+$config->parseArguments($argv);
 
 
 
