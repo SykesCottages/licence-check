@@ -1,0 +1,18 @@
+{
+    "name": "sykescottages/licence-check",
+    "type": "project",
+    "description": "Checks all of the dependencies of projects to ensure the license is valid for use",
+    "license": "MIT",
+    "require": {
+        "ext-json": "*",
+        "ulrichsg/getopt-php": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SykesCottages\\LicenceCheck\\": "src/"
+        }
+    },
+    "bin": [
+        "bin/licence-check"
+    ]
+}

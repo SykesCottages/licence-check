@@ -1,0 +1,49 @@
+#!/usr/bin/env php
+<?php
+use SykesCottages\LicenceCheck\Checker;
+use SykesCottages\LicenceCheck\Config;
+use SykesCottages\LicenceCheck\InvalidLicence;
+
+include(__DIR__ . '/../vendor/autoload.php');
+include(__DIR__ . '/../../../vendor/autoload.php');
+
+$config = new Config();
+$config->parseArguments(implode(' ', $argv));
+
+
+
+$checker = current($config->getArgument('type'));
+$checker = "SykesCottages\\LicenceCheck\\" . $checker;
+/** @var Checker $checker */
+$checker = new $checker();
+
+if (ftell(STDIN) === 0) {
+    $licences =  stream_get_contents(STDIN);
+} else {
+    $licences = $checker->getDefaultOutput();
+}
+
+$file = current($config->getArgument('licenceFile'));
+$checker->addValidFile($file);
+
+foreach($config->getArgument('licence') as $licence) {
+    $checker->addValidLicense($licence);
+}
+
+$file = current($config->getArgument('ignoreFile'));
+if ($file) {
+    $checker->ignorePackageFile($file);
+}
+
+foreach($config->getArgument('ignore') as $licence) {
+    $checker->ignorePackage($licence);
+}
+
+try {
+    $checker->validate($licences);
+} catch (InvalidLicence $exception) {
+    echo $exception->getMessage();
+    exit(1);
+}
+
+
