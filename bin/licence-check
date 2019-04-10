@@ -36,7 +36,7 @@ $file = current($config->getArgument('licenceFile'));
 $checker->addValidFile($file);
 
 foreach($config->getArgument('licence') as $licence) {
-    $checker->addValidLicense($licence);
+    $checker->addValidLicence($licence);
 }
 
 $file = current($config->getArgument('ignoreFile'));
