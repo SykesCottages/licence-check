@@ -3,7 +3,6 @@
 
 namespace SykesCottages\LicenceCheck;
 
-
 class Npm extends Checker
 {
 
@@ -14,7 +13,7 @@ class Npm extends Checker
     {
 
         $licences = array_map(
-            function($line) {
+            function ($line) {
                 return str_getcsv($line);
             },
             explode("\n", ($licenceCsv))
@@ -29,7 +28,6 @@ class Npm extends Checker
         }
 
         $this->checkLicences($output);
-
     }
 
     public function getDefaultOutput()
@@ -39,7 +37,8 @@ class Npm extends Checker
 
     protected function parseLicence($licence)
     {
-        $licence = str_replace([
+        $licence = str_replace(
+            [
                 '(',
                 ')'
             ],
@@ -51,4 +50,3 @@ class Npm extends Checker
         return $licence;
     }
 }
-

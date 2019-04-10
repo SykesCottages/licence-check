@@ -37,7 +37,7 @@ abstract class Checker
         if (!$handle) {
             throw new InvalidArgumentException("Cant open file");
         }
-        while(($license = fgets($handle)) !== false) {
+        while (($license = fgets($handle)) !== false) {
             $callback(trim($license));
         }
     }
@@ -57,7 +57,8 @@ abstract class Checker
             if (array_uintersect(
                 $licence,
                 $this->validLicences,
-                'strcasecmp')
+                'strcasecmp'
+            )
             ) {
                 continue;
             }

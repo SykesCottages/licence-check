@@ -3,7 +3,6 @@
 
 namespace SykesCottages\LicenceCheck;
 
-
 class Composer extends Checker
 {
     private $depth = 10;
@@ -30,4 +29,3 @@ class Composer extends Checker
         return shell_exec('composer licenses --format=json');
     }
 }
-

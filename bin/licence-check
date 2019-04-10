@@ -4,8 +4,17 @@ use SykesCottages\LicenceCheck\Checker;
 use SykesCottages\LicenceCheck\Config;
 use SykesCottages\LicenceCheck\InvalidLicence;
 
-include(__DIR__ . '/../vendor/autoload.php');
-include(__DIR__ . '/../../../vendor/autoload.php');
+
+$autoloadPaths = [
+    __DIR__ . '/../vendor/autoload.php',
+    __DIR__ . '/../../../autoload.php',
+];
+
+foreach($autoloadPaths as $autoload) {
+    if (file_exists($autoload)) {
+        include_once ($autoload);
+    }
+}
 
 $config = new Config();
 $config->parseArguments(implode(' ', $argv));

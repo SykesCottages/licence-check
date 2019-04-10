@@ -19,7 +19,6 @@ class Config
     public function parseArguments($argumentLine)
     {
         $this->getOpt->process($argumentLine);
-
     }
 
     public function getArgument($argument)
@@ -56,8 +55,8 @@ class Config
         );
         $type->setDefaultValue('Composer');
 
-        $type->setValidation(function($name) {
-           return in_array($name, ['Composer','Npm']);
+        $type->setValidation(function ($name) {
+            return in_array($name, ['Composer','Npm']);
         });
 
         $this->getOpt = new GetOpt([
