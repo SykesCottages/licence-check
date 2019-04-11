@@ -3,18 +3,17 @@
 
 namespace SykesCottages\LicenceCheck;
 
+use InvalidArgumentException;
+
 class Composer extends Checker
 {
-    private $depth = 10;
-
     public function validate($licenceJson)
     {
-        $licenceJson = json_decode(
-            $licenceJson,
-            false,
-            $this->depth,
-            JSON_THROW_ON_ERROR
-        );
+        $licenceJson = json_decode($licenceJson);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new InvalidArgumentException("Invalid JSON");
+        }
 
         $licences = [];
         foreach ($licenceJson->dependencies as $name => $dependency) {
