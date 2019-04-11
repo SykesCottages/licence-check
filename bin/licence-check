@@ -26,7 +26,7 @@ $checker = "SykesCottages\\LicenceCheck\\" . $checker;
 /** @var Checker $checker */
 $checker = new $checker();
 
-if (ftell(STDIN) === 0) {
+if (ftell(STDIN) === 0 && getenv('IGNORE_STDIN') != 1) {
     $licences =  stream_get_contents(STDIN);
 } else {
     $licences = $checker->getDefaultOutput();
